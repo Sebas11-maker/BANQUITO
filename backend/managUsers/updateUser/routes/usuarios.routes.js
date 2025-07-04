@@ -6,7 +6,7 @@ var multiparty=require('connect-multiparty');
 var mutipartyMiddleWare=multiparty({uploadDir:'./uploads'});
 
 
-//actualizar un usuario
-router.post('/actualizarUsuario',usuariosController.actualizarUsuario);
+//actualizar Usuario
+router.post('/configurar-usuario',usuariosController.configurarCuenta);
 
 module.exports=router;

@@ -11,6 +11,7 @@ var saveUser = require('./managUsers/saveUser/routes/usuarios.routes');
 var logoutUser = require('./managUsers/logoutUser/routes/usuarios.routes');
 */
 var updateOneUser = require('./managUsers/updateOneUser/routes/usuarios.routes');
+var updateUser = require('./managUsers/updateUser/routes/usuarios.routes');
 
 /*
 var managClient = require('./managClient/saveCliente/routes/clientesRoutes');
@@ -117,6 +118,7 @@ app.use('/',saveUser);
 app.use('/',logoutUser);
 */
 app.use('/',updateOneUser);
+app.use('/',updateUser);
 
 /*
 app.use('/',managActu);
