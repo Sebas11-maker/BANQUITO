@@ -1,0 +1,293 @@
+version: '3.9'
+
+services:
+  # Base de datos
+  mongo:
+    image: mongo:6
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  ### managAccount ###
+  generate-account-number:
+    build: ./managAccount/generateAccountNumber
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  get-account:
+    build: ./managAccount/getAccount
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  get-account-all:
+    build: ./managAccount/getAccountAll
+    ports:
+      - "3003:3003"
+    environment:
+      - PORT=3003
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  get-account-by-ci:
+    build: ./managAccount/getAccountByCI
+    ports:
+      - "3004:3004"
+    environment:
+      - PORT=3004
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  internal-transaction:
+    build: ./managAccount/internalTransaction
+    ports:
+      - "3005:3005"
+    environment:
+      - PORT=3005
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  save-account:
+    build: ./managAccount/saveAccount
+    ports:
+      - "3006:3006"
+    environment:
+      - PORT=3006
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  update-account:
+    build: ./managAccount/updateAccount
+    ports:
+      - "3007:3007"
+    environment:
+      - PORT=3007
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  validate-account-number:
+    build: ./managAccount/validateNumberAccount
+    ports:
+      - "3008:3008"
+    environment:
+      - PORT=3008
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  ### managClient ###
+  get-client:
+    build: ./managClient/getClient
+    ports:
+      - "3009:3009"
+    environment:
+      - PORT=3009
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  save-client:
+    build: ./managClient/saveClient
+    ports:
+      - "3010:3010"
+    environment:
+      - PORT=3010
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  update-client:
+    build: ./managClient/update
+    ports:
+      - "3011:3011"
+    environment:
+      - PORT=3011
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  validate-id:
+    build: ./managClient/validateID
+    ports:
+      - "3012:3012"
+    environment:
+      - PORT=3012
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  ### managMail ###
+  confirm-transfer:
+    build: ./managMail/confirmTransfer
+    ports:
+      - "3013:3013"
+    environment:
+      - PORT=3013
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  forward:
+    build: ./managMail/forward
+    ports:
+      - "3014:3014"
+    environment:
+      - PORT=3014
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  login-failed:
+    build: ./managMail/loginFailed
+    ports:
+      - "3015:3015"
+    environment:
+      - PORT=3015
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  login-successful:
+    build: ./managMail/loginSuccessful
+    ports:
+      - "3016:3016"
+    environment:
+      - PORT=3016
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  new-temp-credentials:
+    build: ./managMail/newTemporaryCredentials
+    ports:
+      - "3017:3017"
+    environment:
+      - PORT=3017
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  successful-transfer:
+    build: ./managMail/successfulTransfer
+    ports:
+      - "3018:3018"
+    environment:
+      - PORT=3018
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  update-mail:
+    build: ./managMail/update
+    ports:
+      - "3019:3019"
+    environment:
+      - PORT=3019
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  update-client-mail:
+    build: ./managMail/updateClient
+    ports:
+      - "3020:3020"
+    environment:
+      - PORT=3020
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  update-user-mail:
+    build: ./managMail/updateUser
+    ports:
+      - "3021:3021"
+    environment:
+      - PORT=3021
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  validate-mail:
+    build: ./managMail/validateMail
+    ports:
+      - "3022:3022"
+    environment:
+      - PORT=3022
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  verify-mail-login:
+    build: ./managMail/verifyMailLogin
+    ports:
+      - "3023:3023"
+    environment:
+      - PORT=3023
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+  welcome-banquito:
+    build: ./managMail/welcomeBanquito
+    ports:
+      - "3024:3024"
+    environment:
+      - PORT=3024
+      - MONGO_URL=mongodb://mongo:27017/banquito
+    depends_on:
+      - mongo
+
+    soap-service:
+    build: ./managIntegration/soapService
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./managIntegration/soapService/.env
+
+  webhook-listener:
+    build: ./managIntegration/webhookListener
+    ports:
+      - "4001:4001"
+    env_file:
+      - ./managIntegration/webhookListener/.env
+
+  websocket-service:
+    build: ./managIntegration/realtimeNotifications
+    ports:
+      - "5001:5001"
+    env_file:
+      - ./managIntegration/realtimeNotifications/.env
+
+  grpc-service:
+    build: ./managIntegration/grpcService
+    ports:
+      - "6001:6001"
+    env_file:
+      - ./managIntegration/grpcService/.env
+
+  graphql-service:
+    build: ./managIntegration/graphqlService
+    ports:
+      - "7001:7001"
+    env_file:
+      - ./managIntegration/graphqlService/.env
+
+
+volumes:
+  mongo_data:
