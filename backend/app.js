@@ -36,7 +36,7 @@ var validateID = require('./managClient/validateID/routes/clientes.routes');
 
 var confirmTransfer = require('./managMail/confirmTransfer/routes/clientes.routes');
 var forward = require('./managMail/forward/routes/clientes.routes');
-var loginFailed = require('./managMail/loginFailed/routes/clientesRoutes');
+var loginFailed = require('./managMail/loginFailed/routes/clientes.routes');
 var loginSuccessful = require('./managMail/loginSuccessful/routes/clientes.routes');
 var newTemporaryCredentials = require('./managMail/newTemporaryCredentials/routes/clientes.routes');
 var successfulTransfer = require('./managMail/successfulTransfer/routes/clientes.routes');
