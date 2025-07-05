@@ -7,9 +7,8 @@ var  loginUser = require('./managUsers/loginUser/routes/usuarios.routes');
 var  generateCode = require('./managUsers/generateCode/routes/usuarios.routes');
 var getUser = require('./managUsers/getUser/routes/usuarios.routes');
 var saveUser = require('./managUsers/saveUser/routes/usuarios.routes');
-/*
 var logoutUser = require('./managUsers/logoutUser/routes/usuarios.routes');
-*/
+
 var updateOneUser = require('./managUsers/updateOneUser/routes/usuarios.routes');
 var updateUser = require('./managUsers/updateUser/routes/usuarios.routes');
 var validateAnswer = require('./managUsers/validateAnswer/routes/usuarios.routes');
@@ -149,9 +148,8 @@ app.use('/',loginUser);
 app.use('/',generateCode);
 app.use('/',getUser);
 app.use('/',saveUser);
-/*
 app.use('/',logoutUser);
-*/
+
 app.use('/',updateOneUser);
 app.use('/',updateUser);
 app.use('/',validateAnswer);
