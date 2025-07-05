@@ -12,6 +12,27 @@ var logoutUser = require('./managUsers/logoutUser/routes/usuarios.routes');
 */
 var updateOneUser = require('./managUsers/updateOneUser/routes/usuarios.routes');
 var updateUser = require('./managUsers/updateUser/routes/usuarios.routes');
+var validateAnswer = require('./managUsers/validateAnswer/routes/usuarios.routes');
+var validateUser = require('./managUsers/validateUser/routes/usuarios.routes');
+var validateUsername = require('./managUsers/validateUsername/routes/usuarios.routes');
+
+var generateAccountNumber = require('./managAccount/generateAccountNumber/routes/cuentas.routes');
+var getAccount = require('./managAccount/getAccount/routes/cuentas.routes');
+var getAccountAll = require('./managAccount/getAccountAll/routes/cuentas.routes');
+var getAccountByCI = require('./managAccount/getAccountByCI/routes/cuentas.routes');
+var internalTransaction = require('./managAccount/internalTransaction/routes/cuentas.routes');
+var saveAccount = require('./managAccount/saveAccount/routes/cuentas.routes');
+var updateAccount = require('./managAccount/updateAccount/routes/cuentas.routes');
+var validateNumberAccount = require('./managAccount/validateNumberAccount/routes/cuentas.routes');
+
+var externalTransaction = require('./managExternalTransactions/externalTransaction/routes/transaccionesExternas.routes');
+var verifyexternalTransaction = require('./managExternalTransactions/verifyexternalAccount/routes/transaccionesExternas.routes');
+
+var getAccounts = require('./managClient/getAccounts/routes/clientes.routes');
+var getClient = require('./managClient/getClient/routes/clientes.routes');
+var saveCliente = require('./managClient/saveClient/routes/clientes.routes');
+var update = require('./managClient/update/routes/clientes.routes');
+var validateID = require('./managClient/validateID/routes/clientes.routes');
 
 /*
 var managClient = require('./managClient/saveCliente/routes/clientesRoutes');
@@ -119,15 +140,38 @@ app.use('/',logoutUser);
 */
 app.use('/',updateOneUser);
 app.use('/',updateUser);
+app.use('/',validateAnswer);
+app.use('/',validateUser);
+app.use('/',validateUsername);
+
+app.use('/',generateAccountNumber);
+app.use('/',getAccount);
+app.use('/',getAccountAll);
+app.use('/',getAccountByCI);
+app.use('/',internalTransaction);
+app.use('/',saveAccount);
+app.use('/',updateAccount);
+app.use('/',validateNumberAccount);
+
+app.use('/',externalTransaction);
+app.use('/',verifyexternalTransaction);
+
+app.use('/',getAccounts);
+app.use('/',getClient);
+app.use('/',saveCliente);
+app.use('/',update);
+app.use('/',validateID);
+
+
 
 /*
-app.use('/',managActu);
-app.use('/',managGet);
+app.use('/',update);
+app.use('/',getClient);
 app.use('/',managClient);
-app.use('/',managCedula);
-app.use('/',managAccou);
+app.use('/',validateID);
+app.use('/',getAccounts);
 
-app.use('/',confirTrans);
+app.use('/',confirmTransfer);
 app.use('/',forward);
 app.use('/',loginFailed);
 app.use('/',loginSuccess);
@@ -140,17 +184,17 @@ app.use('/',valiMail);
 app.use('/',veriMailLog);
 app.use('/',welBan);
 
-app.use('/',generateAccoNum);
+app.use('/',generateAccountNumber);
 app.use('/',getAccount);
 app.use('/',getAccountAll);
-app.use('/',getAccountCI);
-app.use('/',internalTrans);
+app.use('/',getAccountByCI);
+app.use('/',internalTransaction);
 app.use('/',saveAccount);
 app.use('/',updateAccount);
-app.use('/',validateAccount);
+app.use('/',validateNumberAccount);
 
 app.use('/',externalTrans);
-app.use('/',verifyTrans);
+app.use('/',verifyexternalTransaction);
 
 app.use('/',generateCod);
 app.use('/',getUser);
