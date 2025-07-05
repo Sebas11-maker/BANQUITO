@@ -16,3 +16,5 @@ var ClienteSchema = Schema({
     state: Boolean
 });
 module.exports = mongoose.model('Cliente', ClienteSchema);
+
+module.exports = Cliente;

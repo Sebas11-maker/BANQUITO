@@ -9,7 +9,7 @@ var multiparty=require('connect-multiparty');
 var mutipartyMiddleWare=multiparty({uploadDir:'./uploads'});
 
 
-//confirmar codigo previo a realizar una transferencia
-router.post('/confirmar-transferencia',correoController.confirmarTransferencia);
+//enviar correo por nuevas credenciales temporales del cliente
+router.post('/nuevas-temp',correoController.nuevasCredencialesTemp);
 
 module.exports=router;

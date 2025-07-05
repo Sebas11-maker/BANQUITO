@@ -34,6 +34,20 @@ var saveCliente = require('./managClient/saveClient/routes/clientes.routes');
 var update = require('./managClient/update/routes/clientes.routes');
 var validateID = require('./managClient/validateID/routes/clientes.routes');
 
+var confirmTransfer = require('./managMail/confirmTransfer/routes/clientes.routes');
+var forward = require('./managMail/forward/routes/clientes.routes');
+var loginFailed = require('./managMail/loginFailed/routes/clientesRoutes');
+var loginSuccessful = require('./managMail/loginSuccessful/routes/clientes.routes');
+var newTemporaryCredentials = require('./managMail/newTemporaryCredentials/routes/clientes.routes');
+var successfulTransfer = require('./managMail/successfulTransfer/routes/clientes.routes');
+var update = require('./managMail/update/routes/clientes.routes');
+var updateClient = require('./managMail/updateClient/routes/clientes.routes');
+var updateUser = require('./managMail/updateUser/routes/clientes.routes');
+var validateMail = require('./managMail/validateMail/routes/clientes.routes');
+var verifyMailLogin = require('./managMail/verifyMailLogin/routes/clientes.routes');
+var welcomeBanquito = require('./managMail/welcomeBanquito/routes/clientes.routes');
+
+
 /*
 var managClient = require('./managClient/saveCliente/routes/clientesRoutes');
 var managCedula = require('./managClient/validarCedula/routes/clientesRoutes');
@@ -162,7 +176,18 @@ app.use('/',saveCliente);
 app.use('/',update);
 app.use('/',validateID);
 
-
+app.use('/',confirmTransfer);
+app.use('/',forward);
+app.use('/',loginFailed);
+app.use('/',loginSuccessful);
+app.use('/',newTemporaryCredentials);
+app.use('/',successfulTransfer);
+app.use('/',update);
+app.use('/',updateClient);
+app.use('/',updateUser);
+app.use('/',validateMail);
+app.use('/',verifyMailLogin);
+app.use('/',welcomeBanquito);
 
 /*
 app.use('/',update);
@@ -175,14 +200,14 @@ app.use('/',confirmTransfer);
 app.use('/',forward);
 app.use('/',loginFailed);
 app.use('/',loginSuccess);
-app.use('/',credentialsTemp);
-app.use('/',successTrans);
+app.use('/',newTemporaryCredentials);
+app.use('/',successfulTransfer);
 app.use('/',update);
-app.use('/',upClient);
-app.use('/',upUser);
-app.use('/',valiMail);
-app.use('/',veriMailLog);
-app.use('/',welBan);
+app.use('/',updateClient);
+app.use('/',updateUser);
+app.use('/',validateMail);
+app.use('/',verifyMailLogin);
+app.use('/',welcomeBanquito);
 
 app.use('/',generateAccountNumber);
 app.use('/',getAccount);

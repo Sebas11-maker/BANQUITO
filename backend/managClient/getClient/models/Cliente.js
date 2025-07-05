@@ -15,4 +15,6 @@ var ClienteSchema = Schema({
     numero_telefono: String,
     state: Boolean
 });
-module.exports = mongoose.model('Cliente', ClienteSchema);
+const Cliente = mongoose.models.Cliente || mongoose.model('Cliente', clienteSchema);
+
+module.exports = Cliente;

@@ -1,5 +1,5 @@
 'use strict'
-var Cliente = require('../models/Cliente');
+var Cliente = require('../models/cliente');
 var fs = require('path');
 const path = require('path');
 
