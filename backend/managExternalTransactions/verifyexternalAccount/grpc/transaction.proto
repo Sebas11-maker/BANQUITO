@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+service ExternalTransactionService {
+  rpc externalTransaction (TransactionRequest) returns (TransactionResponse);
+  rpc verifyExternalAccount (TransactionRequest) returns (TransactionResponse);
+}
+
+message TransactionRequest {
+  string data = 1;
+}
+
+message TransactionResponse {
+  string status = 1;
+  string message = 2;
+}

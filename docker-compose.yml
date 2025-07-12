@@ -1,0 +1,270 @@
+version: '3'
+
+services:
+  # managAccount
+  generate-account-number:
+    build: ./backend/managAccount/generateAccountNumber
+    ports:
+      - "3600:3600"
+    networks:
+      - app-network
+
+  get-account:
+    build: ./backend/managAccount/getAccount
+    ports:
+      - "3601:3600"
+    networks:
+      - app-network
+
+  get-account-all:
+    build: ./backend/managAccount/getAccountAll
+    ports:
+      - "3602:3600"
+    networks:
+      - app-network
+
+  get-account-by-ci:
+    build: ./backend/managAccount/getAccountByCI
+    ports:
+      - "3603:3600"
+    networks:
+      - app-network
+
+  internal-transaction:
+    build: ./backend/managAccount/internalTransaction
+    ports:
+      - "3604:3600"
+    networks:
+      - app-network
+
+  save-account:
+    build: ./backend/managAccount/saveAccount
+    ports:
+      - "3605:3600"
+    networks:
+      - app-network
+
+  update-account:
+    build: ./backend/managAccount/updateAccount
+    ports:
+      - "3606:3600"
+    networks:
+      - app-network
+
+  validate-number-account:
+    build: ./backend/managAccount/validateNumberAccount
+    ports:
+      - "3607:3600"
+    networks:
+      - app-network
+
+  # managClient
+  get-accounts:
+    build: ./backend/managClient/getAccounts
+    ports:
+      - "3608:3600"
+    networks:
+      - app-network
+
+  get-client:
+    build: ./backend/managClient/getClient
+    ports:
+      - "3609:3600"
+    networks:
+      - app-network
+
+  save-client:
+    build: ./backend/managClient/saveClient
+    ports:
+      - "3610:3600"
+    networks:
+      - app-network
+
+  update:
+    build: ./backend/managClient/update
+    ports:
+      - "3611:3600"
+    networks:
+      - app-network
+
+  validate-id:
+    build: ./backend/managClient/validateID
+    ports:
+      - "3612:3600"
+    networks:
+      - app-network
+
+  # managExternalTransactions
+  external-transaction:
+    build: ./backend/managExternalTransactions/externalTransaction
+    ports:
+      - "3613:3600"
+    networks:
+      - app-network
+
+  verify-external-account:
+    build: ./backend/managExternalTransactions/verifyexternalAccount
+    ports:
+      - "3614:3600"
+    networks:
+      - app-network
+
+  # managMail
+  confirm-transfer:
+    build: ./backend/managMail/confirmTransfer
+    ports:
+      - "3615:3600"
+    networks:
+      - app-network
+
+  forward:
+    build: ./backend/managMail/forward
+    ports:
+      - "3616:3600"
+    networks:
+      - app-network
+
+  login-failed:
+    build: ./backend/managMail/loginFailed
+    ports:
+      - "3617:3600"
+    networks:
+      - app-network
+
+  login-successful:
+    build: ./backend/managMail/loginSuccessful
+    ports:
+      - "3618:3600"
+    networks:
+      - app-network
+
+  new-temporary-credentials:
+    build: ./backend/managMail/newTemporaryCredentials
+    ports:
+      - "3619:3600"
+    networks:
+      - app-network
+
+  successful-transfer:
+    build: ./backend/managMail/successfulTransfer
+    ports:
+      - "3620:3600"
+    networks:
+      - app-network
+
+  update-mail:
+    build: ./backend/managMail/update
+    ports:
+      - "3621:3600"
+    networks:
+      - app-network
+
+  update-client-mail:
+    build: ./backend/managMail/updateClient
+    ports:
+      - "3622:3600"
+    networks:
+      - app-network
+
+  update-user-mail:
+    build: ./backend/managMail/updateUser
+    ports:
+      - "3623:3600"
+    networks:
+      - app-network
+
+  validate-mail:
+    build: ./backend/managMail/validateMail
+    ports:
+      - "3624:3600"
+    networks:
+      - app-network
+
+  verify-mail-login:
+    build: ./backend/managMail/verifyMailLogin
+    ports:
+      - "3625:3600"
+    networks:
+      - app-network
+
+  welcome-banquito:
+    build: ./backend/managMail/welcomeBanquito
+    ports:
+      - "3626:3600"
+    networks:
+      - app-network
+
+  # managUsers
+  generate-code:
+    build: ./backend/managUsers/generateCode
+    ports:
+      - "3627:3600"
+    networks:
+      - app-network
+
+  get-user:
+    build: ./backend/managUsers/getUser
+    ports:
+      - "3628:3600"
+    networks:
+      - app-network
+
+  login-user:
+    build: ./backend/managUsers/loginUser
+    ports:
+      - "3629:3600"
+    networks:
+      - app-network
+
+  logout-user:
+    build: ./backend/managUsers/logoutUser
+    ports:
+      - "3630:3600"
+    networks:
+      - app-network
+
+  save-user:
+    build: ./backend/managUsers/saveUser
+    ports:
+      - "3631:3600"
+    networks:
+      - app-network
+
+  update-one-user:
+    build: ./backend/managUsers/updateOneUser
+    ports:
+      - "3632:3600"
+    networks:
+      - app-network
+
+  update-user:
+    build: ./backend/managUsers/updateUser
+    ports:
+      - "3633:3600"
+    networks:
+      - app-network
+
+  validate-answer:
+    build: ./backend/managUsers/validateAnswer
+    ports:
+      - "3634:3600"
+    networks:
+      - app-network
+
+  validate-user:
+    build: ./backend/managUsers/validateUser
+    ports:
+      - "3635:3600"
+    networks:
+      - app-network
+
+  validate-username:
+    build: ./backend/managUsers/validateUsername
+    ports:
+      - "3636:3600"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
