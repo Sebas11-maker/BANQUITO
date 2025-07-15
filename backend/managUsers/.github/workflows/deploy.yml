@@ -3,7 +3,7 @@ name: Build and Deploy to EC2
 on:
   push:
     branches:
-      - QA
+      - main
 
 jobs:
   build_and_deploy:
@@ -36,6 +36,8 @@ jobs:
         docker build -t sebitas11/save-account ./save-account
         docker build -t sebitas11/update-ccount ./update-ccount
         docker build -t sebitas11/validate-number-account ./validate-number-account
+        docker build -t sebitas11/update-ccount ./update-ccount
+        docker build -t sebitas11/validate-number-account ./validate-number-account
 
         docker push sebitas11/generate-account-number
         docker push sebitas11/get-account
@@ -43,6 +45,8 @@ jobs:
         docker push sebitas11/get-account-by-ci
         docker push sebitas11/internal-transaction
         docker push sebitas11/save-account
+        docker push sebitas11/update-ccount
+        docker push sebitas11/validate-number-account
         docker push sebitas11/update-ccount
         docker push sebitas11/validate-number-account
 
@@ -67,6 +71,8 @@ jobs:
           docker pull sebitas11/get-account-by-ci
           docker pull sebitas11/internal-transaction
           docker pull sebitas11/save-account
+          docker pull sebitas11/update-ccount
+          docker pull sebitas11/validate-number-account
           docker pull sebitas11/update-ccount
           docker pull sebitas11/validate-number-account
 
@@ -111,3 +117,13 @@ jobs:
           docker run -d -p 3607:3607 \
          
             sebitas11/validate-number-account
+            
+          # 9
+          docker run -d -p 3623:3623 \
+         
+            sebitas11/update-user
+
+          # 10
+          docker run -d -p 3624:3624 \
+         
+            sebitas11/validate-mail
