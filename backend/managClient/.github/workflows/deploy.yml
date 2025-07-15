@@ -1,0 +1,93 @@
+name: Build and Deploy to EC2
+
+on:
+  push:
+    branches:
+      - QA
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Paso 1: Checkout code.
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Paso 2: Configuration Docker
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    # Paso 3: Login on Docker Hub
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: sebitas11
+        password: WXTLj161
+
+    # Paso 4: Build and upload Docker images
+    - name: Build and push Docker images
+      run: |
+        docker build -t sebitas11/get-accounts ./get-accounts
+        docker build -t sebitas11/get-client ./get-client
+        docker build -t sebitas11/save-client ./save-client
+        docker build -t sebitas11/update ./update
+        docker build -t sebitas11/validate-id ./validate-id
+        
+
+        docker push sebitas11/get-accounts
+        docker push sebitas11/get-client
+        docker push sebitas11/save-client
+        docker push sebitas11/update
+        docker push sebitas11/validate-id
+        
+
+
+    # Paso 5: Connect to the EC2 instance using elastic IP and deploy the containers
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: tuIPelastica  # iP EC2 elastic
+        username: ubuntu
+        key: ${{ secrets.EC2_PRIVATE_KEY }} # AQUI TIENES QUE PONER TU SECRET KEY EN GITHUB -SETTINGS-SECRETN AND VARIALES-CREAR TU SECRET
+        port: 22
+        script: |
+          # Stop and delete old containers if they exist
+          docker stop $(docker ps -aq)
+          docker rm $(docker ps -aq)
+          
+          # Download images from Docker Hub
+          docker pull sebitas11/get-accounts
+          docker pull sebitas11/get-client
+          docker pull sebitas11/save-client
+          docker pull sebitas11/update
+          docker pull sebitas11/validate-id
+         
+
+         
+          # 1 
+          docker run -d -p 3608:3608 \
+         
+            sebitas11/get-accounts
+
+          # 2
+          docker run -d -p 3609:3609 \
+         
+            sebitas11/get-client
+            
+           # 3 
+           docker run -d -p 3610:3610 \
+         
+            sebitas11/save-client
+
+                # 4
+          docker run -d -p 3611:3611 \
+         
+            sebitas11/update
+
+          # 5
+          docker run -d -p 3612:3612 \
+         
+            sebitas11/validate-id
+            
+           

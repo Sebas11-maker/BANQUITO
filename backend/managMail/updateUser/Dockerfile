@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Expón el puerto 3600 en el que la aplicación se ejecuta
-EXPOSE 3600
+EXPOSE 3623
 
 # Comando para iniciar la aplicación
 CMD ["node", "index.js"]

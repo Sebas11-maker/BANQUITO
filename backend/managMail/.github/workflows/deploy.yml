@@ -1,0 +1,146 @@
+name: Build and Deploy to EC2
+
+on:
+  push:
+    branches:
+      - QA
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Paso 1: Checkout code.
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Paso 2: Configuration Docker
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    # Paso 3: Login on Docker Hub
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: sebitas11
+        password: WXTLj161
+
+    # Paso 4: Build and upload Docker images
+    - name: Build and push Docker images
+      run: |
+        docker build -t sebitas11/confirm-transfer ./confirm-transfer
+        docker build -t sebitas11/forward ./forward
+        docker build -t sebitas11/login-failed ./login-failed
+        docker build -t sebitas11/login-successful ./login-successful
+        docker build -t sebitas11/new-temporary-credentials ./new-temporary-credentials
+        docker build -t sebitas11/successful-transfer ./successful-transfer
+        docker build -t sebitas11/update ./update
+        docker build -t sebitas11/update-client ./update-client
+        docker build -t sebitas11/update-user ./update-user
+        docker build -t sebitas11/validate-mail ./validate-mail
+        docker build -t sebitas11/verify-mail-login ./verify-mail-login
+        docker build -t sebitas11/welcome-banquito ./welcome-banquito
+
+
+        docker push sebitas11/confirm-transfer
+        docker push sebitas11/forward
+        docker push sebitas11/login-failed
+        docker push sebitas11/login-successful
+        docker push sebitas11/new-temporary-credentials
+        docker push sebitas11/successful-transfer
+        docker push sebitas11/update
+        docker push sebitas11/update-client
+        docker push sebitas11/update-user
+        docker push sebitas11/validate-mail
+        docker push sebitas11/verify-mail-login
+        docker push sebitas11/welcome-banquito
+
+
+    # Paso 5: Connect to the EC2 instance using elastic IP and deploy the containers
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: tuIPelastica  # iP EC2 elastic
+        username: ubuntu
+        key: ${{ secrets.EC2_PRIVATE_KEY }} # AQUI TIENES QUE PONER TU SECRET KEY EN GITHUB -SETTINGS-SECRETN AND VARIALES-CREAR TU SECRET
+        port: 22
+        script: |
+          # Stop and delete old containers if they exist
+          docker stop $(docker ps -aq)
+          docker rm $(docker ps -aq)
+          
+          # Download images from Docker Hub
+          docker pull sebitas11/confirm-transfer
+          docker pull sebitas11/forward
+          docker pull sebitas11/login-failed
+          docker pull sebitas11/login-successful
+          docker pull sebitas11/new-temporary-credentials
+          docker pull sebitas11/successful-transfer
+          docker pull sebitas11/update
+          docker pull sebitas11/update-client
+          docker pull sebitas11/update-user
+          docker pull sebitas11/validate-mail
+          docker pull sebitas11/verify-mail-login
+          docker pull sebitas11/welcome-banquito
+
+         
+          # 1 
+          docker run -d -p 3615:3615 \
+         
+            sebitas11/confirm-transfer
+
+          # 2
+          docker run -d -p 3616:3616 \
+         
+            sebitas11/forward
+            
+           # 3 
+           docker run -d -p 3617:3617 \
+         
+            sebitas11/login-failed
+
+          # 4
+          docker run -d -p 3618:3618 \
+         
+            sebitas11/login-successful
+
+          # 5
+          docker run -d -p 3619:3619 \
+         
+            sebitas11/new-temporary-credentials
+            
+          # 6 
+           docker run -d -p 3620:3620 \
+         
+            sebitas11/successful-transfer
+
+
+          # 7 
+          docker run -d -p 3621:3621 \
+         
+            sebitas11/update 
+
+          # 8
+          docker run -d -p 3622:3622 \
+         
+            sebitas11/update-client
+
+          # 9
+          docker run -d -p 3623:3623 \
+         
+            sebitas11/update-user
+
+          # 10
+          docker run -d -p 3624:3624 \
+         
+            sebitas11/validate-mail
+
+          # 11
+          docker run -d -p 3625:3625 \
+         
+            sebitas11/verify-mail-login
+
+          # 12 
+          docker run -d -p 3626:3626 \
+         
+            sebitas11/welcome-banquito
