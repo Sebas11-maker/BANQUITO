@@ -28,27 +28,27 @@ jobs:
     # Paso 4: Build and upload Docker images
     - name: Build and push Docker images
       run: |
-        docker build -t sebitas11/generate-account-number ./generate-account-number
-        docker build -t sebitas11/get-account ./get-account
-        docker build -t sebitas11/get-account-all ./get-account-all
-        docker build -t sebitas11/get-account-by-ci ./get-account-by-ci
-        docker build -t sebitas11/internal-transaction ./internal-transaction
-        docker build -t sebitas11/save-account ./save-account
-        docker build -t sebitas11/update-ccount ./update-ccount
-        docker build -t sebitas11/validate-number-account ./validate-number-account
-        docker build -t sebitas11/update-ccount ./update-ccount
-        docker build -t sebitas11/validate-number-account ./validate-number-account
+        docker build -t sebitas11/generate-code ./generate-code
+        docker build -t sebitas11/get-user ./get-user
+        docker build -t sebitas11/login-user ./login-user
+        docker build -t sebitas11/logout-user ./logout-user
+        docker build -t sebitas11/save-user ./save-user
+        docker build -t sebitas11/update-one-user ./update-one-user
+        docker build -t sebitas11/update-user ./update-user
+        docker build -t sebitas11/validate-answer ./validate-answer
+        docker build -t sebitas11/validate-user ./validate-user
+        docker build -t sebitas11/validate-username ./validate-username
 
-        docker push sebitas11/generate-account-number
-        docker push sebitas11/get-account
-        docker push sebitas11/get-account-all
-        docker push sebitas11/get-account-by-ci
-        docker push sebitas11/internal-transaction
-        docker push sebitas11/save-account
-        docker push sebitas11/update-ccount
-        docker push sebitas11/validate-number-account
-        docker push sebitas11/update-ccount
-        docker push sebitas11/validate-number-account
+        docker push sebitas11/generate-code
+        docker push sebitas11/get-user
+        docker push sebitas11/login-user
+        docker push sebitas11/logout-user
+        docker push sebitas11/save-user
+        docker push sebitas11/update-one-user
+        docker push sebitas11/update-user
+        docker push sebitas11/validate-answer
+        docker push sebitas11/validate-user
+        docker push sebitas11/validate-username
 
 
     # Paso 5: Connect to the EC2 instance using elastic IP and deploy the containers
@@ -65,65 +65,65 @@ jobs:
           docker rm $(docker ps -aq)
           
           # Download images from Docker Hub
-          docker pull sebitas11/generate-account-number
-          docker pull sebitas11/get-account
-          docker pull sebitas11/get-account-all
-          docker pull sebitas11/get-account-by-ci
-          docker pull sebitas11/internal-transaction
-          docker pull sebitas11/save-account
-          docker pull sebitas11/update-ccount
-          docker pull sebitas11/validate-number-account
-          docker pull sebitas11/update-ccount
-          docker pull sebitas11/validate-number-account
+          docker pull sebitas11/generate-code
+          docker pull sebitas11/get-user
+          docker pull sebitas11/login-user
+          docker pull sebitas11/logout-user
+          docker pull sebitas11/save-user
+          docker pull sebitas11/update-one-user
+          docker pull sebitas11/update-user
+          docker pull sebitas11/validate-answer
+          docker pull sebitas11/validate-user
+          docker pull sebitas11/validate-username
 
          
           # 1 
           docker run -d -p 3600:3600 \
          
-            sebitas11/generate-account-number
+            sebitas11/generate-code
 
           # 2
           docker run -d -p 3601:3601 \
          
-            sebitas11/get-account
+            sebitas11/get-user
             
            # 3 
            docker run -d -p 3602:3602 \
          
-            sebitas11/get-account-all 
+            sebitas11/login-user 
 
                 # 4
           docker run -d -p 3603:3603 \
          
-            sebitas11/get-account-by-ci
+            sebitas11/logout-user
 
           # 5
           docker run -d -p 3604:3604 \
          
-            sebitas11/internal-transaction
+            sebitas11/save-user
             
            # 6 
            docker run -d -p 3605:3605 \
          
-            sebitas11/save-account 
+            sebitas11/update-one-user 
 
 
                 # 7 
           docker run -d -p 3606:3606 \
          
-            sebitas11/update-ccount
+            sebitas11/update-user
 
           # 8
           docker run -d -p 3607:3607 \
          
-            sebitas11/validate-number-account
+            sebitas11/validate-answer
             
           # 9
           docker run -d -p 3623:3623 \
          
-            sebitas11/update-user
+            sebitas11/validate-user
 
           # 10
           docker run -d -p 3624:3624 \
          
-            sebitas11/validate-mail
+            sebitas11/validate-username

@@ -3,7 +3,7 @@ name: Build and Deploy to EC2
 on:
   push:
     branches:
-      - QA
+      - main
 
 jobs:
   build_and_deploy:
